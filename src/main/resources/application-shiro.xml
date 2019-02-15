@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--自定义realm-->
+    <bean class="shiro.customRealm" id="customRealm"></bean>
+
+
+    <!--Shiro配置-->
+
+    <!--
+        1.配置SecurityManager
+    -->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+        <!--<property name="authenticator" ref="authenticator"/>-->
+        <!--<property name="realms">-->
+        <!--<list>-->
+        <!--<ref bean="md5Realm" />-->
+        <!--<ref bean="sha1Realm" />-->
+        <!--</list>-->
+        <!--</property>-->
+        <property name="realm" ref="customRealm"></property>
+        <property name="rememberMeManager" ref="rememberMeManager"></property>
+    </bean>
+
+
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager"
+          class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!--注入自定义cookie(主要是设置寿命, 默认的一年太长)-->
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <!--手动指定cookie-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="300"/><!-- 5分钟 -->
+    </bean>
+
+
+    <!--
+        2.配置realm
+        2.1) 使用实现了org.apache.shiro.realm.Realm接口的realm
+    -->
+    <bean class="org.apache.shiro.authc.pam.ModularRealmAuthenticator" id="authenticator">
+        <property name="realms" ref="customRealm">
+            <!--<list>-->
+            <!--<ref bean="md5Realm" />-->
+            <!--<ref bean="sha1Realm" />-->
+            <!--</list>-->
+        </property>
+    </bean>
+
+
+    <!--<bean class="com.dream.shiro.MD5Realm" id="md5Realm">-->
+    <!--<property name="credentialsMatcher">-->
+    <!--<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+    <!--<property name="hashAlgorithmName" value="MD5"/>-->
+    <!--<property name="hashIterations" value="1024"/>-->
+    <!--</bean>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--<bean class="com.dream.shiro.SHA1Realm" id="sha1Realm">-->
+    <!--<property name="credentialsMatcher">-->
+    <!--<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+    <!--<property name="hashAlgorithmName" value="SHA1"/>-->
+    <!--<property name="hashIterations" value="1024"/>-->
+    <!--</bean>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--记住我的session配置-->
+    <bean class="filter.remeberMeFilter" id="rememberMeFilter"></bean>
+
+    <!--
+        3.配置shiro过滤器
+        3.1) id必须和web.xml中配置的shiroFilter filterName一致.
+    -->
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+        <!--管理rememberMe会话-->
+        <property name="filters">
+            <map>
+                <entry key="rememberMe" value-ref="rememberMeFilter"></entry>
+                <entry key="logout" value-ref="systemLogoutFilter"></entry>
+            </map>
+        </property>
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/jsp/index.jsp"/>
+        <property name="unauthorizedUrl" value="/index.jsp  "/>
+        <!--
+            配置需要受保护的页面
+            以及访问这些页面需要的权限
+            1) anon可以匿名访问的页面
+            2) authc 必须认证(登录)后才可以访问的页面
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--&lt;!&ndash;加载静态资源&ndash;&gt;-->
+                /static/** = anon
+
+                /login = anon
+                /logout = logout
+                <!--除以上配置外，其他请求全部必须认证-->
+                /** = user,rememberMe
+            </value>
+        </property>
+    </bean>
+
+
+    <!--登出-->
+    <bean id="systemLogoutFilter" class="filter.SystemLogoutFilter"></bean>
+
+    <!--Shiro配置-->
+    <!--
+        1.配置lifecycleBeanPostProcessor，可以在Spring IOC容器中调用shiro的生命周期方法.
+    -->
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" id="lifecycleBeanPostProcessor"/>
+
+    <!--
+        2.启用Spring IOC容器Shiro注解，但必须配置了lifecycleBeanPostProcessor后才可以使用
+    -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+
+    <!--
+        3.开启Spring AOC Shiro注解支持
+    -->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+
+    <!--注册缓存管理器: 这里用ehcache插件(已被shiro集成)-->
+    <!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+    <!--&lt;!&ndash;指定ehcache配置文件&ndash;&gt;-->
+    <!--<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>-->
+    <!--</bean>-->
+
+</beans>

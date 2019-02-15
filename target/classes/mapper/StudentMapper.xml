@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StudentMapper">
+    <!--查询所有学生-->
+    <select id="QueryStudents" resultType="Student">
+    select * from student
+  </select>
+    <!--分页查询学生-->
+    <select id="ListStudents" resultType="Student" >
+        select * from student order by ${sort} ${order} limit #{offset},#{limit}
+    </select>
+    <!--查询学生数量  分页得时候确定多少页-->
+    <select id="GetStudentTotal" resultType="Integer">
+        select count(*) from student
+    </select>
+    <!--增加学生-->
+    <insert id="insertStudent" parameterType="Student">
+        insert into student (id,name,sex,location,major,classname,role) value(#{id},#{name},#{sex},#{location},#{major},#{classname},#{role})
+    </insert>
+    
+    <!--根据id删除学生-->
+    <delete id="deleteStudentById" parameterType="String">
+        delete from student where id = #{id}
+    </delete>
+
+    <!--查询学生-->
+    <select id="searchStudent" resultType="Student">
+        select * from student
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!--更新学生-->
+    <update id="updateStudent" parameterType="Student">
+        update student set name = #{name},sex = #{sex},location = #{location},major = #{major},classname =#{classname},role = #{role} where id = #{id}
+    </update>
+
+
+    <!--饼状图显示性别-->
+    <select id="QuerySexData" resultType="map">
+        select case when sex = '1' then '男' when sex = '0' then '女' end as SEX ,count(sex) as SEXCOUNT from student group by sex
+    </select>
+</mapper>
