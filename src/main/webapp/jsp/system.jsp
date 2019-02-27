@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>H+ 后台主题UI框架 - 主页</title>
+    <title>测试主页demo</title>
 
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
@@ -55,7 +55,7 @@
                             <li><a class="J_menuItem" href="#"><i class="fa fa-comments-o"></i><span style="margin-left: 5px;">信箱</span></a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/logout"><i class=" fa fa-sign-out"></i><span>安全退出</span></a>
+                            <li><a href="${pageContext.request.contextPath}/logout"><i class=" fa fa-sign-out"></i><span>安全退出</span></a>
                             </li>
                         </ul>
                     </div>
@@ -73,10 +73,10 @@
                             <a class="J_menuItem" href="${pageContext.request.contextPath}/jsp/stuManager.jsp" data-index="0">学生管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+                            <a class="J_menuItem" href="${pageContext.request.contextPath}/jsp/chart.jsp">聊天室</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v3.html">主页示例三</a>
+                            <a class="J_menuItem" href="${pageContext.request.contextPath}/jsp/chat.jsp">bootstrap聊天室</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="index_v4.html">主页示例四</a>

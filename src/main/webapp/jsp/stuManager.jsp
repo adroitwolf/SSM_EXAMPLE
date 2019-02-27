@@ -255,6 +255,7 @@
     }
 
 
+
     $(function () {
 
 
@@ -354,7 +355,7 @@
                         if (row['sex'] === 1) {
                             return '男';
                         }
-                        if (row['role'] === 0) {
+                        if (row['sex'] === 0) {
                             return '女';
                         }
                         return "未知";
@@ -426,17 +427,9 @@
             onLoadSuccess: function () {
                 //加载成功时执行
                 console.log("加载成功!");
-            }, onLoadError: function (e,Status) {
+            }, onLoadError: function () {
                 //加载失败时执行
                 console.log("加载失败!");
-
-                var redirect=e.toString();
-                console.log(redirect);
-                if(redirect=="REDIRECT"){
-                    alert("请先登录！");
-                    window.location.href=XMLHttpRequest.getResponseHeader("CONTEXTPATH");
-                }
-
             }, formatLoadingMessage: function () {
                 //正在加载
                 return "玩命加载中...";

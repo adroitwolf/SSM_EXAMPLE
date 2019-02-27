@@ -16,7 +16,7 @@ public class SystemLogoutFilter extends LogoutFilter {
         Subject subject =getSubject(request,response);
         String redirectUrl = getRedirectUrl(request,response,subject);
         ServletContext context = request.getServletContext();
-        System.out.println(context);
+        System.out.println("context为:" + context);
         try{
             subject.logout();
 //            context.removeAttribute("");

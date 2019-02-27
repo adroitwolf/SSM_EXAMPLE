@@ -99,6 +99,8 @@
         <property name="filterChainDefinitions">
             <value>
                 <!--&lt;!&ndash;加载静态资源&ndash;&gt;-->
+                /jsp/chat.jsp = anon
+                /chat = anon
                 /static/** = anon
 
                 /login = anon

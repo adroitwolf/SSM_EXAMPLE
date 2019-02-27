@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="dy"  style="height: 600px;width: 1100px;margin-top: 50px;margin-left:20px;">
-    <div id="mainChart" style="border: 1px solid #438FB9; width:100%; height:45%;"></div>
+    <div id="mainChart" style="border: 1px solid #438FB9; width:60%; height:45%;"></div>
 </div>
 
 <script type="text/javascript">
