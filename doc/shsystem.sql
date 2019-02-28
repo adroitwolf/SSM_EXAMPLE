@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50634
 File Encoding         : 65001
 
-Date: 2019-02-15 17:57:53
+Date: 2019-02-28 10:46:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,14 +22,15 @@ DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) DEFAULT NULL
+  `role` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login
 -- ----------------------------
-INSERT INTO `login` VALUES ('admin', 'admin', 'admin');
-INSERT INTO `login` VALUES ('user', 'user', 'user');
+INSERT INTO `login` VALUES ('admin', 'fd4f829e8020046adff2803b8328f0c2', 'admin', 'il3DUpkk60');
+INSERT INTO `login` VALUES ('user', 'a4ca66f54233d8963b40b1d04598fb7f', 'user', 'QjJ4E75p7r');
 
 -- ----------------------------
 -- Table structure for student
@@ -50,7 +51,7 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('201521139', '张三39', '0', '南昌39', '软件工程', '6班', '0', '2019-02-10');
+INSERT INTO `student` VALUES ('201521139', '张三39', '0', '南昌39', '软件工程', '1班', '0', '2019-02-10');
 INSERT INTO `student` VALUES ('201521140', '张三40', '1', '南昌40', '交通工程', '8班', '0', null);
 INSERT INTO `student` VALUES ('201521141', '张三41', '0', '南昌41', '英语专业', '7班', '0', null);
 INSERT INTO `student` VALUES ('201521142', '张三42', '0', '南昌42', '英语专业', '8班', '0', null);
@@ -63,10 +64,10 @@ INSERT INTO `student` VALUES ('201521149', '张三49', '1', '南昌49', '桥梁�
 INSERT INTO `student` VALUES ('201521150', '张三50', '1', '南昌50', '计算机科学与技术', '1班', '0', null);
 INSERT INTO `student` VALUES ('201521151', '张三51', '1', '南昌51', '计算机', '1班', '0', null);
 INSERT INTO `student` VALUES ('201521152', '张三52', '1', '南昌52', '计算机', '1班', '1', null);
-INSERT INTO `student` VALUES ('201521153', '张三53', '1', '南昌53', '计算机', '1班', '1', null);
-INSERT INTO `student` VALUES ('201521154', '张三54', '1', '南昌54', '计算机', '1班', '1', null);
+INSERT INTO `student` VALUES ('201521153', '张三53', '0', '南昌53', '计算机', '1班', '1', null);
+INSERT INTO `student` VALUES ('201521154', '张三54', '0', '南昌54', '计算机', '1班', '1', null);
 INSERT INTO `student` VALUES ('201521155', '张三55', '1', '南昌55', '计算机', '1班', '1', null);
-INSERT INTO `student` VALUES ('201521156', '张三56', '1', '南昌56', '计算机', '1班', '1', null);
+INSERT INTO `student` VALUES ('201521156', '张三56', '0', '南昌56', '计算机', '1班', '1', null);
 INSERT INTO `student` VALUES ('201521157', '张三57', '1', '南昌57', '计算机', '1班', '1', null);
 INSERT INTO `student` VALUES ('201521158', '张三58', '1', '南昌58', '计算机', '1班', '1', null);
 INSERT INTO `student` VALUES ('201521159', '张三59', '1', '南昌59', '计算机', '1班', '1', null);
