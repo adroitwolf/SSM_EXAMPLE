@@ -4,4 +4,6 @@ import pojo.User;
 
 public interface UserAccountService {
     User userLogin(String username,String password);
+
+    String getUserSalt(String username);
 }

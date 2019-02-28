@@ -7,6 +7,16 @@ public class User implements Serializable {
     private String password;
     private String Role;
 
+    private String salt;
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     public String getUsername() {
         return username;
     }

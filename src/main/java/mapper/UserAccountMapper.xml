@@ -14,4 +14,13 @@
         </if>
     </where>
   </select>
+
+    <select id="getSalt" resultType="String">
+        select salt from login
+        <where>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
 </mapper>

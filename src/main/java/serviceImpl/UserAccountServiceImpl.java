@@ -15,4 +15,10 @@ public class UserAccountServiceImpl implements UserAccountService {
         User user = userAccountMapper.UserLogin(username,password);
         return user;
     }
+
+    @Override
+    public String getUserSalt(String username) {
+        String salt = userAccountMapper.getSalt(username);
+        return salt;
+    }
 }

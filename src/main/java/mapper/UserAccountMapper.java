@@ -5,4 +5,6 @@ import pojo.User;
 
 public interface UserAccountMapper {
     User UserLogin(@Param("username")String username,@Param("password")String password);
+
+    String getSalt(@Param("username") String username);
 }

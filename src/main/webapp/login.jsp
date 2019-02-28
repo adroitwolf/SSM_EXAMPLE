@@ -19,6 +19,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/sweetalert/sweetalert.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/sweetalert/sweetalert.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/sweetalert/sweetalert.min.js"></script>
+    <script>
+        if(window != top){
+            top.location.href = location.href;
+        }
+    </script>
 </head>
 <body>
 
