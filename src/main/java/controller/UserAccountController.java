@@ -34,7 +34,10 @@ public class UserAccountController {
             model.addAttribute("Info","账号或密码错误");
 //            return "redirect:/login.jsp";
             return "forward:/login.jsp";
+//            return "redirect:/jsp/system.jsp";
         }
+//            httpSession.setAttribute("USER_SESSION","admin");
+//            httpSession.setAttribute("USER_ROLE","admin");
         return "redirect:/jsp/system.jsp";
     }
 
