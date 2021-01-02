@@ -11,7 +11,10 @@
         <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 5843653... 增加chat聊天室 第二次提交
     <!--加载spring Ioc容器-->
 
     <context-param>

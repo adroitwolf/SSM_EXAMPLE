@@ -296,7 +296,7 @@
             <artifactId>spring-messaging</artifactId>
             <version>4.0.2.RELEASE</version>
         </dependency>
-        <!--阿里巴巴的jsonObject-->
+<!--阿里巴巴的jsonObject-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
