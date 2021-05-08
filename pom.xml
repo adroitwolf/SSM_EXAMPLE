@@ -47,7 +47,7 @@
         <slf4j-log4j12.version>1.7.7</slf4j-log4j12.version>
         <slf4j-api.version>1.7.21</slf4j-api.version>
         <commons-logging.version>1.2</commons-logging.version>
-        <shiro-core.version>1.2.3</shiro-core.version>
+        <shiro-core.version>1.6.0</shiro-core.version>
         <shiro-web.version>1.2.3</shiro-web.version>
         <shiro-spring.version>1.2.3</shiro-spring.version>
         <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
