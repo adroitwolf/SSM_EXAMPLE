@@ -42,7 +42,7 @@
         <jackson-core.version>2.9.8</jackson-core.version>
         <log4j.version>1.2.17</log4j.version>
         <log4j-core.version>2.6.2</log4j-core.version>
-        <log4j-api.version>2.6.2</log4j-api.version>
+        <log4j-api.version>2.15.0</log4j-api.version>
         <log4j-web.version>2.11.1</log4j-web.version>
         <slf4j-log4j12.version>1.7.7</slf4j-log4j12.version>
         <slf4j-api.version>1.7.21</slf4j-api.version>
